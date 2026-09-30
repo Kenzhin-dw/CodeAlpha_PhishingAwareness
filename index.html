@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactive, defensive phishing awareness training for students and everyday technology users.">
+  <meta name="theme-color" content="#07162b">
+  <title>PhishAware — Interactive Phishing Awareness Training</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307162b'/%3E%3Cpath d='M32 9l19 8v13c0 12-8 21-19 25C21 51 13 42 13 30V17l19-8z' fill='%232dd4bf'/%3E%3Cpath d='M23 32l6 6 13-14' fill='none' stroke='%2307162b' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to training</a>
+  <header class="topbar">
+    <button class="icon-btn mobile-only" id="menu-toggle" aria-label="Open module navigation" aria-expanded="false">☰</button>
+    <a class="brand" href="#home" data-route="home" aria-label="PhishAware home">
+      <span class="brand-mark" aria-hidden="true">✓</span>
+      <span>Phish<span>Aware</span></span>
+    </a>
+    <div class="top-progress" aria-label="Overall training progress">
+      <div class="progress-copy"><span>Training progress</span><strong id="header-progress-text">0%</strong></div>
+      <div class="progress-track"><span id="header-progress-bar"></span></div>
+    </div>
+    <button class="button ghost compact" id="reset-progress">Reset progress</button>
+  </header>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Training modules">
+      <div class="sidebar-heading">Learning path</div>
+      <nav id="module-nav"></nav>
+      <div class="sidebar-card">
+        <span class="eyebrow">Your progress</span>
+        <strong><span id="completed-count">0</span> / <span id="module-count">0</span> modules</strong>
+        <small>Progress is saved on this device.</small>
+      </div>
+    </aside>
+
+    <main id="main-content" tabindex="-1">
+      <section class="view active hero-view" id="home" data-title="Welcome">
+        <div class="hero-copy">
+          <span class="kicker">CodeAlpha Cyber Security Internship · Task 2</span>
+          <h1>Think before<br>you <em>click.</em></h1>
+          <p class="lede">Build practical habits for identifying deceptive messages, suspicious links, fake websites, and social engineering pressure.</p>
+          <div class="hero-actions">
+            <button class="button primary" data-route="fundamentals">Start training <span aria-hidden="true">→</span></button>
+            <button class="button secondary" data-route="dashboard">View progress</button>
+          </div>
+          <div class="hero-meta" aria-label="Course details">
+            <div><strong>12</strong><span>learning modules</span></div>
+            <div><strong>20–30</strong><span>minutes</span></div>
+            <div><strong>3</strong><span>practice labs</span></div>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="Training preview">
+          <div class="radar" aria-hidden="true"><span class="radar-sweep"></span><i>!</i></div>
+          <div class="signal-card"><span class="signal-icon">@</span><div><small>Sender check</small><strong>Does the domain match?</strong></div></div>
+          <div class="signal-card"><span class="signal-icon">↗</span><div><small>Link check</small><strong>Read before you visit</strong></div></div>
+          <div class="signal-card"><span class="signal-icon">◷</span><div><small>Pressure check</small><strong>Pause when rushed</strong></div></div>
+        </div>
+      </section>
+
+      <section class="view" id="fundamentals" data-title="Phishing fundamentals">
+        <div class="section-intro"><span class="step-label">01 · Fundamentals</span><h2>Phishing is deception with a destination.</h2><p>Attackers impersonate a trusted person or service to make someone reveal information, send money, open a file, or visit a harmful page.</p></div>
+        <div class="flow" aria-label="Typical phishing attack lifecycle">
+          <div><b>1</b><strong>Deceptive contact</strong><span>Email, text, call, QR code, or social message</span></div><i>→</i>
+          <div><b>2</b><strong>Emotional pressure</strong><span>Urgency, fear, trust, curiosity, or reward</span></div><i>→</i>
+          <div><b>3</b><strong>Unsafe action</strong><span>Click, reply, sign in, pay, or open a file</span></div><i>→</i>
+          <div><b>4</b><strong>Impact</strong><span>Account access, fraud, malware, or data loss</span></div>
+        </div>
+        <div class="callout"><span>Key idea</span><p>Phishing succeeds by influencing decisions—not by looking obviously fake. A polished message can still be malicious.</p></div>
+        <button class="button complete-btn" data-complete="fundamentals">Mark complete & continue</button>
+      </section>
+
+      <section class="view" id="types" data-title="Phishing types">
+        <div class="section-intro"><span class="step-label">02 · Common types</span><h2>One tactic, many delivery channels.</h2><p>Select a card to reveal the scenario, warning signs, and safest response.</p></div>
+        <div class="type-grid" id="type-grid"></div>
+        <button class="button complete-btn" data-complete="types">Mark complete & continue</button>
+      </section>
+
+      <section class="view" id="email" data-title="Email red flags">
+        <div class="section-intro"><span class="step-label">03 · Email inspection</span><h2>Read the message like an investigator.</h2><p>No single visual clue proves phishing. Build confidence by checking several signals together.</p></div>
+        <div class="email-lab">
+          <article class="email-card">
+            <div class="email-toolbar"><span></span><span></span><span></span><b>Inbox</b></div>
+            <div class="email-head"><p><small>From</small><strong data-flag="sender">Account Security &lt;security@cloudvault-support.example&gt;</strong></p><p><small>To</small>you@example.net</p><p><small>Subject</small><strong data-flag="urgency">URGENT: Access expires in 30 minutes</strong></p></div>
+            <div class="email-body"><p data-flag="greeting">Dear User,</p><p>We detected an unusual sign-in. To prevent suspension, you must verify your account immediately.</p><button class="fake-cta" data-flag="link" type="button">VERIFY ACCOUNT</button><p class="link-preview" data-flag="domain">https://cloudvault.example.security-check.example/verify</p><p data-flag="request">Confirm your password and recovery code to restore access.</p><p>CloudVault Security Team</p></div>
+          </article>
+          <aside class="inspection-panel"><span class="eyebrow">Fictional training example</span><h3>What deserves a second look?</h3><p>Reveal the evidence, then inspect every highlighted area.</p><button class="button primary" id="reveal-flags">Show red flags</button><ul id="flag-list" class="flag-list" aria-live="polite"></ul></aside>
+        </div>
+        <div class="callout caution"><span>Remember</span><p>Grammar, logos, and HTTPS are not trust guarantees. Verify the sender, registrable domain, context, and request through an independent channel.</p></div>
+        <button class="button complete-btn" data-complete="email">Mark complete & continue</button>
+      </section>
+
+      <section class="view" id="spot" data-title="Spot the phish">
+        <div class="section-intro"><span class="step-label">04 · Interactive lab</span><h2>Spot the phish.</h2><p>Classify six fictional messages. Feedback appears after each decision.</p></div>
+        <div class="challenge-header"><span>Message <strong id="spot-number">1</strong> of <strong id="spot-total">6</strong></span><span>Score <strong id="spot-score">0</strong></span></div>
+        <div id="spot-card" class="challenge-card"></div>
+      </section>
+
+      <section class="view" id="website" data-title="Fake website detection">
+        <div class="section-intro"><span class="step-label">05 · Website inspection</span><h2>A familiar page can live at the wrong address.</h2><p>This visual-only simulation never accepts, stores, or transmits credentials.</p></div>
+        <div class="browser-sim">
+          <div class="browser-bar"><div class="browser-dots"><i></i><i></i><i></i></div><div class="address">🔒 https://signin.cloudvault.example.login-check.example/session</div></div>
+          <div class="fake-site"><div class="fake-logo">C<span>V</span></div><h3>CloudVault</h3><p>Session expired. Sign in to continue.</p><div class="visual-input">Email address</div><div class="visual-input">Password</div><button type="button" disabled>Sign in (disabled)</button><small>Training simulation · no input fields</small></div>
+        </div>
+        <div class="evidence-grid"><article><b>01</b><h3>Read right to left</h3><p>The registrable domain here is <code>login-check.example</code>. “cloudvault” is only a subdomain.</p></article><article><b>02</b><h3>Ignore borrowed polish</h3><p>Brand colors and familiar layouts can be copied. Visual similarity does not establish ownership.</p></article><article><b>03</b><h3>HTTPS is encryption</h3><p>The lock means the connection is encrypted. It does not prove the site itself is trustworthy.</p></article></div>
+        <button class="button complete-btn" data-complete="website">Mark complete & continue</button>
+      </section>
+
+      <section class="view" id="urls" data-title="URL detective">
+        <div class="section-intro"><span class="step-label">06 · URL analysis lab</span><h2>Can you read this URL?</h2><p>Focus on the host name after <code>https://</code> and before the next slash. Then identify the registrable domain.</p></div>
+        <div class="url-anatomy"><span>scheme</span><strong>https://</strong><span>subdomain</span><strong>accounts.</strong><span class="domain-label">registrable domain</span><strong class="domain-value">example.com</strong><span>path</span><strong>/login</strong></div>
+        <div class="challenge-header"><span>URL <strong id="url-number">1</strong> of <strong id="url-total">6</strong></span><span>Score <strong id="url-score">0</strong></span></div>
+        <div id="url-card" class="challenge-card"></div>
+      </section>
+
+      <section class="view" id="social" data-title="Social engineering">
+        <div class="section-intro"><span class="step-label">07 · Human factors</span><h2>Attackers target emotions and assumptions.</h2><p>Recognize the pressure, slow down, and verify the request outside the conversation.</p></div>
+        <div class="principle-grid" id="principle-grid"></div>
+        <button class="button complete-btn" data-complete="social">Mark complete & continue</button>
+      </section>
+
+      <section class="view" id="scenarios" data-title="Decision scenarios">
+        <div class="section-intro"><span class="step-label">08 · Scenario lab</span><h2>Choose the safest next move.</h2><p>Five realistic situations test whether you can interrupt the attacker’s script.</p></div>
+        <div class="challenge-header"><span>Scenario <strong id="scenario-number">1</strong> of <strong id="scenario-total">5</strong></span><span>Score <strong id="scenario-score">0</strong></span></div>
+        <div id="scenario-card" class="challenge-card"></div>
+      </section>
+
+      <section class="view" id="practices" data-title="Best practices">
+        <div class="section-intro"><span class="step-label">09 · Prevention</span><h2>Build a pause into high-risk moments.</h2><p>A practical checklist for links, sign-ins, accounts, and suspicious messages.</p></div>
+        <div class="checklist-grid">
+          <article><span>Before clicking</span><ul><li>Check the full sender address</li><li>Preview the actual destination</li><li>Ask whether the message was expected</li><li>Question urgency and unusual requests</li></ul></article>
+          <article><span>Before signing in</span><ul><li>Read the registrable domain</li><li>Open a known bookmark or official app</li><li>Avoid sign-in links in unexpected messages</li><li>Never share passwords or MFA codes</li></ul></article>
+          <article><span>Protect accounts</span><ul><li>Use unique passwords and a password manager</li><li>Turn on MFA; phishing-resistant options are strongest</li><li>Keep software and browsers updated</li><li>Review active sessions and recovery details</li></ul></article>
+          <article><span>If suspicious</span><ul><li>Stop interacting with the message</li><li>Verify via a known phone number or app</li><li>Report through the appropriate channel</li><li>Delete only after reporting if policy allows</li></ul></article>
+        </div>
+        <button class="button complete-btn" data-complete="practices">Mark complete & continue</button>
+      </section>
+
+      <section class="view" id="clicked" data-title="If you already clicked">
+        <div class="section-intro"><span class="step-label">10 · Incident response</span><h2>Act promptly—not panically.</h2><p>An accidental click is a reason to respond, not to hide the incident.</p></div>
+        <ol class="response-steps"><li><b>Stop</b><span>Do not enter more information, approve prompts, or keep interacting.</span></li><li><b>Report</b><span>Tell your organization’s security or support contact what happened and when.</span></li><li><b>Recover</b><span>If credentials were entered, use the official service to change the password and sign out other sessions.</span></li><li><b>Strengthen</b><span>Enable or verify MFA, review recovery details, and follow the organization’s instructions.</span></li><li><b>Check</b><span>If a file ran or software may have downloaded, disconnect if policy requires and contact support for a security scan.</span></li></ol>
+        <div class="callout"><span>Why speed matters</span><p>Early reporting gives defenders more time to protect accounts and other people who received the same message.</p></div>
+        <button class="button complete-btn" data-complete="clicked">Mark complete & continue</button>
+      </section>
+
+      <section class="view" id="patterns" data-title="Real-world patterns">
+        <div class="section-intro"><span class="step-label">11 · Field patterns</span><h2>Real-world phishing patterns.</h2><p>These are documented categories seen in real incidents. The examples remain fictional and non-operational.</p></div>
+        <div class="pattern-list" id="pattern-list"></div>
+        <div class="source-note"><strong>Authoritative guidance used:</strong> CISA Secure Our World and FTC Consumer Advice. Real organizations are not depicted in the simulations.</div>
+        <button class="button complete-btn" data-complete="patterns">Mark complete & continue</button>
+      </section>
+
+      <section class="view" id="quiz" data-title="Final quiz">
+        <div class="section-intro"><span class="step-label">12 · Knowledge check</span><h2>Final assessment.</h2><p>Answer 12 questions covering messages, URLs, social engineering, account protection, and incident response.</p></div>
+        <div id="quiz-start" class="quiz-start"><div class="quiz-ring"><strong>12</strong><span>questions</span></div><div><h3>Ready to test your judgment?</h3><p>Your best score is saved only in this browser. This is a learning check, not a professional certification.</p><button class="button primary" id="start-quiz">Begin quiz</button></div></div>
+        <div id="quiz-container" hidden></div>
+        <div id="quiz-results" hidden></div>
+      </section>
+
+      <section class="view" id="dashboard" data-title="Progress dashboard">
+        <div class="section-intro"><span class="step-label">Progress</span><h2>Your training dashboard.</h2><p>A device-local summary of completed modules, challenge performance, and achievements.</p></div>
+        <div class="stats-grid"><article><span>Modules completed</span><strong id="dash-modules">0 / 12</strong></article><article><span>Overall progress</span><strong id="dash-progress">0%</strong></article><article><span>Challenge accuracy</span><strong id="dash-challenges">Not started</strong></article><article><span>Final quiz</span><strong id="dash-quiz">Not completed</strong></article></div>
+        <h3 class="subheading">Achievements</h3><div class="badge-grid" id="badge-grid"></div>
+        <h3 class="subheading">Module status</h3><div class="dashboard-modules" id="dashboard-modules"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/progress.js"></script>
+  <script src="js/modules.js"></script>
+  <script src="js/challenges.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

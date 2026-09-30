@@ -1,0 +1,41 @@
+.DS_Store
+Thumbs.db
+.sites-runtime/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+credentials*
+secrets*
+
+# Cybersecurity captures and raw telemetry
+*.pcap
+*.pcapng
+*.har
+eve.json
+*.jsonl
+*.log
+
+# Local databases and runtime state
+*.db
+*.sqlite
+*.sqlite3
+node_modules/
+.venv/
+venv/
+__pycache__/
+
+# Editor, test, and temporary files
+.vscode/
+.idea/
+.pytest_cache/
+coverage/
+*.tmp
+*.temp
+*.bak
+*.swp
